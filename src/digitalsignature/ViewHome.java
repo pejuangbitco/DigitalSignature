@@ -75,7 +75,7 @@ public class ViewHome extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("MD5:");
+        jLabel3.setText("SHA-256:");
 
         msg_digest.setText("\"message digest\"");
 
@@ -164,8 +164,8 @@ public class ViewHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(msg_digest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(637, 637, 637)))
+                        .addComponent(msg_digest, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
@@ -220,7 +220,7 @@ public class ViewHome extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {    
-            String md5 = MD5.checkSum(this.file_path.getText());
+            String md5 = SHA256.checkSum(this.file_path.getText());
             this.msg_digest.setText(md5);
             
             DefaultTableModel tableModel = (DefaultTableModel) this.table_result.getModel();
