@@ -14,8 +14,7 @@ import java.util.Random;
  */
 public class ElGamal {
     private int bilangan_prima;
-    private int penanda_tangan;
-    private int[] pk_penanda_tangan; //r
+    private int penanda_tangan;    
     private boolean perbandingan_msg_digest;
     
     public int getBilanganPrima() 
