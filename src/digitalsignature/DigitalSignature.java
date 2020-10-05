@@ -16,7 +16,7 @@ public class DigitalSignature {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ViewHome home = new ViewHome();
+        View home = new View();
         home.setVisible(true);
     }
     
