@@ -98,7 +98,7 @@ public class View extends javax.swing.JFrame {
         jLabel5.setText("~~~~~~~Hasil~~~~~~~");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("SHA-512");
+        jLabel6.setText("MD5 file");
 
         output_md5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +300,7 @@ public class View extends javax.swing.JFrame {
         jLabel11.setText("~~~~~~~Hasil~~~~~~~");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("SHA-512");
+        jLabel12.setText("MD5 file");
 
         output_dekripsi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,7 +377,7 @@ public class View extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(output_dekripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(output_sign_valid, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
+                                        .addComponent(output_sign_valid, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
@@ -450,11 +450,11 @@ public class View extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sha512 = SHA512.checkSum(this.input_berkas_sign.getText());
-        this.output_md5.setText(sha512);
+        String message_digest = MD5.checkSum(this.input_berkas_sign.getText());
+        this.output_md5.setText(message_digest);
         
         ElGamal el = new ElGamal();
-        el.enkripsi(sha512, (Integer)this.input_jumlah_penanda.getValue());
+        el.enkripsi(message_digest, (Integer)this.input_jumlah_penanda.getValue());
         String signature = el.getChiperString();
         signature = signature.substring(1, signature.length()-1);
         this.output_p.setText(String.valueOf(el.getBilanganPrima()));
@@ -482,12 +482,12 @@ public class View extends javax.swing.JFrame {
         }
         
         ElGamal el = new ElGamal();
-        String sha512_decrypt = el.dekripsi(chiper, penanda, P, a);
+        String message_digest_decrypt = el.dekripsi(chiper, penanda, P, a);
 //        this.output_dekripsi.setText(sha256_decrypt);
         
-        String sha512 = SHA512.checkSum(this.input_berkas_verif.getText());
-        this.output_dekripsi.setText(sha512);        
-        if(!sha512.equals(sha512_decrypt)) {
+        String message_digest = MD5.checkSum(this.input_berkas_verif.getText());
+        this.output_dekripsi.setText(message_digest);        
+        if(!message_digest.equals(message_digest_decrypt)) {
             this.output_sign_valid.setText("Signature tidak valid!!");
         } else {
             this.output_sign_valid.setText("Signature Valid");
