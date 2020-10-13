@@ -17,10 +17,10 @@ import sun.misc.BASE64Encoder;
  *
  * @author CodeForLife
  */
-public class SHA256 {
+public class SHA512 {
     public static String checkSum(String fileName){
         try {
-            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-512");
             FileInputStream fis = new FileInputStream(fileName);
 
             byte[] data = new byte[1024];
