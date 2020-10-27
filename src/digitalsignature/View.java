@@ -100,7 +100,7 @@ public class View extends javax.swing.JFrame {
         jLabel5.setText("~~~~~~~Result~~~~~~~");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("SHA-512");
+        jLabel6.setText("MD5");
 
         output_md5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +305,7 @@ public class View extends javax.swing.JFrame {
         jLabel11.setText("~~~~~~~Result~~~~~~~");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("SHA-512");
+        jLabel12.setText("MD5");
 
         output_dekripsi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -469,11 +469,12 @@ public class View extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sha512 = SHA512.checkSum(this.input_berkas_sign.getText());
-        this.output_md5.setText(sha512);
+//        String msg_digest = MD5.checkSum(this.input_berkas_sign.getText());
+        String msg_digest = MD5Plain.checkSum(this.input_berkas_sign.getText());        
+        this.output_md5.setText(msg_digest);
         
         ElGamal el = new ElGamal();
-        el.enkripsi(sha512, (Integer)this.input_jumlah_penanda.getValue());
+        el.enkripsi(msg_digest, (Integer)this.input_jumlah_penanda.getValue());
         String signature = el.getChiperString();
         signature = signature.substring(1, signature.length()-1);
         this.output_p.setText(String.valueOf(el.getBilanganPrima()));
@@ -553,12 +554,12 @@ public class View extends javax.swing.JFrame {
         }
 
         ElGamal el = new ElGamal();
-        String sha512_decrypt = el.dekripsi(chiper, penanda, P, a);
+        String msg_digest_decrypt = el.dekripsi(chiper, penanda, P, a);
         //        this.output_dekripsi.setText(sha256_decrypt);
 
-        String sha512 = SHA512.checkSum(this.input_berkas_verif.getText());
-        this.output_dekripsi.setText(sha512);
-        if(!sha512.equals(sha512_decrypt)) {
+        String msg_digest = MD5Plain.checkSum(this.input_berkas_verif.getText());
+        this.output_dekripsi.setText(msg_digest);
+        if(!msg_digest.equals(msg_digest_decrypt)) {
             this.output_sign_valid.setText("Invalid Signature!!!");
         } else {
             this.output_sign_valid.setText("Valid Signature");
