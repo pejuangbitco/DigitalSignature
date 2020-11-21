@@ -72,6 +72,7 @@ public class ElGamal {
             int r[] = new int[penanda_tangan];            
             for(int j=0; j<r.length; j++) {
                 r[j] = int_random.nextInt(this.P-2);
+                System.out.println("PK: "+r[j]+" msg: "+(i+1)+" signer: "+(j+1));
             }
             //calc C1,..., Cn
             BigInteger[] c1 = chiperC1(r);
@@ -114,7 +115,7 @@ public class ElGamal {
         }
         
         BigInteger M = tmp.mod(Pb);
-        System.out.println("dekrip: "+M.toString());
+//        System.out.println("dekrip: "+M.toString());
     }
     
     public String dekripsi(int[] chiper, int jumlah_penanda, int P, int a)
@@ -131,7 +132,7 @@ public class ElGamal {
                 BigInteger ascii = tmp.mod(Pb);
                 tmp = new BigInteger("1");
                 md5 += (char)ascii.intValue();
-                System.out.println("hit: "+i);
+//                System.out.println("hit: "+i);
             } else {
                 stepper++;
                 tmp = tmp.multiply(chiper_b.pow(P-1-a));

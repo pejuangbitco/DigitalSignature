@@ -470,7 +470,7 @@ public class View extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //        String msg_digest = MD5.checkSum(this.input_berkas_sign.getText());
-        String msg_digest = MD5Plain.checkSum(this.input_berkas_sign.getText());        
+        String msg_digest = MD5.checkSum(this.input_berkas_sign.getText());        
         this.output_md5.setText(msg_digest);
         
         ElGamal el = new ElGamal();
@@ -557,7 +557,7 @@ public class View extends javax.swing.JFrame {
         String msg_digest_decrypt = el.dekripsi(chiper, penanda, P, a);
         //        this.output_dekripsi.setText(sha256_decrypt);
 
-        String msg_digest = MD5Plain.checkSum(this.input_berkas_verif.getText());
+        String msg_digest = MD5.checkSum(this.input_berkas_verif.getText());
         this.output_dekripsi.setText(msg_digest);
         if(!msg_digest.equals(msg_digest_decrypt)) {
             this.output_sign_valid.setText("Invalid Signature!!!");
